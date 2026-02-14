@@ -28,7 +28,7 @@ jobs:
       - name: Init TWA project
         run: |
           yes | bubblewrap init \
-            --manifest https://example.com/manifest.json \
+            --manifest https://fad25dd1-5328-4aae-b1af-697becf50ba1-00-3jskkf6krxlkj.worf.replit.dev/ \
             --directory twa \
             --applicationId com.roomvisionpro.app \
             --name "Room Vision Pro"
