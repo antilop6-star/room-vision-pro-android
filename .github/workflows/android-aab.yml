@@ -1,0 +1,33 @@
+name: Build Android AAB (TWA)
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: Install Bubblewrap
+        run: npm install -g @bubblewrap/cli
+
+      - name: Init TWA project
+        run: |
+          bubblewrap init \
+            --manifest https://fad25dd1-5328-4aae-b1af-697becf50ba1-00-3jskkf6krxlkj.worf.replit.dev/manifest.json \
+            --directory twa \
+            --applicationId com.roomvisionpro.app \
+            --name "Room Vision Pro"
+
+      - name: Build AAB
+        run: |
+          cd twa
+          bubblewrap build
